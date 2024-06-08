@@ -16,7 +16,6 @@ El proyecto tiene la siguiente estructura de directorios:
 │   └── tiempo_tx.csv
 ├── MARCOS_DOMINGUEZ_trilatracion.py
 ├── readme.md
-├── requirement.txt
 ├── results
 │   ├── MARCOS_DOMINGUEZ_ErrorRelativo.csv
 │   ├── MARCOS_DOMINGUEZ_figura.png
@@ -28,7 +27,6 @@ El proyecto tiene la siguiente estructura de directorios:
 
 - `data`: Contiene los datos necesarios para la trilateración.
 - `MARCOS_DOMINGUEZ_trilatracion.py`: Archivo principal que contiene el código para ejecutar el algoritmo de trilateración.
-- `requirement.txt`: Archivo que contiene las dependencias del proyecto.
 - `results`: Directorio donde se guardan los resultados de la trilateración.
 - `setup_env.sh`: Script para configurar el entorno virtual y las dependencias del proyecto.
 - `run_project.sh`: Script para ejecutar el algoritmo de trilateración en el entorno virtual generado.
