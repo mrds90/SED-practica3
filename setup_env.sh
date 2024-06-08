@@ -4,19 +4,15 @@
 pip3 install virtualenv
 
 # Crear el entorno virtual llamado .venv
-virtualenv .venv
+if [ ! -d ".venv" ]; then
+    python3 -m virtualenv .venv
+fi
 
 # Activar el entorno virtual
 source .venv/bin/activate
 
-Instalar las dependencias desde requirements.txt
-if [ -f requirements.txt ]; then
-    while IFS= read -r package || [[ -n "$package" ]]; do
-        pip3 install "$package" || echo "Error al instalar $package. Continuando con el siguiente paquete..."
-    done < requirements.txt
-else
-    echo "El archivo requirements.txt no existe."
-fi
+pip3 install pandas
+pip3 install matplotlib
 
 # # Desactivar el entorno virtual
 deactivate
