@@ -85,6 +85,7 @@ t_device = pd.read_csv('data/tiempo_tx.csv', header=None).values
 t_ancla = pd.read_csv('data/tiempo_rx.csv', header=None).values
 p_ancla = pd.read_csv('data/anclas.csv', header=None).values
 p_reference = pd.read_csv('data/posiciones.csv', header=None).values
+image = np.loadtxt('data/plano.csv', delimiter=',')
 
 # Calculate distances
 d = distance_from_time(t_ancla, t_device)
@@ -107,18 +108,22 @@ error_relativo = 100 * (error_absoluto) / p_reference
 # Save relative errors
 np.savetxt("results/MARCOS_DOMINGUEZ_ErrorRelativo.csv", error_relativo, delimiter=",", fmt='%f')
 
-# Plotting
-plt.figure(figsize=(15, 8))
-plt.plot(P.T[0], P.T[1], label='Estimación', color=CB_color_cycle[0])
-plt.plot(p_reference.T[0], p_reference.T[1], label='Posiciones', color=CB_color_cycle[1])
-plt.scatter(p_ancla.T[0], p_ancla.T[1], linewidth=3, label='Anclas', color=CB_color_cycle[2])
-plt.grid(which='major', linestyle='-', linewidth=0.5)
-plt.grid(which='minor', linestyle='--', linewidth=0.5)
-plt.xlabel("X [m]")
-plt.ylabel("Y [m]")
-plt.minorticks_on()
-plt.legend()
+fig, ax = plt.subplots(figsize=(15, 8))
 
-# Save and show the plot
+ax.imshow(image, cmap='gray', extent=[0, 100, 0, 100], origin='lower')
+ax.invert_yaxis()
+
+ax.plot(P.T[0], P.T[1], label='Estimación', color=CB_color_cycle[0])
+ax.plot(p_reference.T[0], p_reference.T[1], label='Posiciones', color=CB_color_cycle[1])
+ax.scatter(p_ancla.T[0], p_ancla.T[1], linewidth=3, label='Anclas', color=CB_color_cycle[2])
+
+ax.grid(which='major', linestyle='-', linewidth=0.5)
+ax.grid(which='minor', linestyle='--', linewidth=0.5)
+ax.set_xlabel("X [m]")
+ax.set_ylabel("Y [m]")
+ax.minorticks_on()
+ax.legend()
+
+# Guardar y mostrar la figura
 plt.savefig("results/MARCOS_DOMINGUEZ_figura.png")
 plt.show()
